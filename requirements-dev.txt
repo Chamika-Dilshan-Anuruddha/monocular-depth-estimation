@@ -1,0 +1,9 @@
+-r requirements.txt
+
+pytest>=8.0.0
+pytest-cov>=5.0.0
+ruff>=0.4.0
+mypy>=1.9.0
+types-Pillow
+ipykernel>=6.0.0
+jupyter>1.0.0
