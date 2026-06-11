@@ -43,7 +43,7 @@ list_of_files = [
 
     ".github/workflows/ci.yaml",
     ".env.example",
-    "pyproject.homl",
+    "pyproject.toml",
     "requirements.txt",
     "requirements-dev.txt"
 

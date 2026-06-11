@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "depth_estimation"
+version = "0.1.0"
+description = "Monocular depth estimation using MiDas and Depth Anything v2"
+readme = "README.md"
+rquires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["depth estimation", "monocular depth", "computer vision", "MiDas", "Depth Anything"]
+
+dependencies = [
+    "torch>=2.1.0",
+    "torchvision>=0.16.0",
+    "transformers>=4.38.0",
+    "timm>=0.9.0",
+    "opencv-python>=4.9.0",
+    "Pillow>10.0.0",
+    "numpy>=1.26.0",
+    "matplotlib>=3.8.0",
+    "gradio>=4.20.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.9.0",
+    "types-Pillow",
+]
+
+[project.scripts]
+depth-batch = "scripts.batch_depth:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/depth_estimation"]
+
+
+# ------ Ruff -------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F","W","I","UP","B","C4","SIM"]
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S1001"]
+
+
+# ------ MyPy -------------------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+
+# ------ Pytest -----------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=sort"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+
+
+# ------ Coverage ---------------------------------------------------------
+[tool.coverage.run]
+source = ["src"]
+omit = ["*/tests/*", "*/notebooks/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+#We measure test coverage only in src/
+#Ignore tests and notebooks
+#Show missing lines
+#Show all files even if fully tested
