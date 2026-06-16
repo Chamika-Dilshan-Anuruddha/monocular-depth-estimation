@@ -1,5 +1,6 @@
 from .settings import (
     Settings,
+    settings,
     BACKEND_LABELS,
     COLORMAP_LABELS,
     ColormapName,
@@ -10,6 +11,7 @@ from .settings import (
 
 __all__ = [
     "Settings",
+    "settings",
     "BACKEND_LABELS",
     "COLORMAP_LABELS",
     "ColormapName",

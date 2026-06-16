@@ -16,13 +16,13 @@ from depth_estimation.utils import get_logger
 
 log = get_logger(__name__)
 
-_CMAPS = dict[str, matplotlib.colors.Colormap] = {
+_CMAPS: dict[str, matplotlib.colors.Colormap] = {
     name.value: cm.get_cmap(name.value) for name in ColormapName
 }
 
 class DepthPostprocessor:
 
-    def __init__(self, colormap: ColormapName | str = ColormapName.INFRNO, invert: bool = True, alpha: float = 1.0) -> None:
+    def __init__(self, colormap: ColormapName | str = ColormapName.INFERNO, invert: bool = True, alpha: float = 1.0) -> None:
         cmap_key = colormap.value if isinstance(colormap, ColormapName) else colormap
         if cmap_key not in _CMAPS:
             raise ValueError(
@@ -111,11 +111,11 @@ class DepthPostprocessor:
         log.info("Saved depth visualisation -> %s", out_path)
         return out_path
     
-# ----- Internal ------------------------------------------------------------------------
+    # ----- Internal ------------------------------------------------------------------------
 
-@staticmethod
-def _validate(depth: np.ndarray) -> np.ndarray:
-    if depth.ndim != 2:
-        raise ValueError(f"Expected 2-D depth map, got shape {depth.shape}")
-    return depth.astype(np.float32)
+    @staticmethod
+    def _validate(depth: np.ndarray) -> np.ndarray:
+        if depth.ndim != 2:
+            raise ValueError(f"Expected 2-D depth map, got shape {depth.shape}")
+        return depth.astype(np.float32)
 

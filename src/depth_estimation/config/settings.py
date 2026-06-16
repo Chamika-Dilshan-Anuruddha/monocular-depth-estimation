@@ -24,7 +24,7 @@ class DepthAnythingSize(str, Enum):
     LARGE = "vitl"
 
 class ColormapName(str, Enum):
-    INFRNO = "inferno"
+    INFERNO = "inferno"
     MAGMA = "magma"
     PLASMA = "plasma"
     VIRIDIS = "viridis"
@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     batch_size: int = Field(default=1, ge=1)
 
     # ----- Visualisation --------------------------------------------------
-    colormap: ColormapName = ColormapName.INFRNO
+    colormap: ColormapName = ColormapName.INFERNO
     invert_depth: bool = True  #far=dark, near=bright when True
     alpha_blend: float = Field(default=0.6, ge=0.0, le=1.0)
 
@@ -60,7 +60,7 @@ class Settings(BaseSettings):
     app_theme: Literal["dark", "light", "default"] = "default"
 
     # ----- Logging --------------------------------------------------------
-    log_level: str = "INRO"
+    log_level: str = "INFO"
     log_file: str | None = None
 
     class Config:
@@ -78,7 +78,7 @@ BACKEND_LABELS: dict[ModelBackend, str] = {
 }
 
 COLORMAP_LABELS: dict[ColormapName, str] = {
-    ColormapName.INFRNO: "Inferno 🔥",
+    ColormapName.INFERNO: "Inferno 🔥",
     ColormapName.MAGMA: "Magma 🌋",
     ColormapName.PLASMA: "Plasma ☄️",
     ColormapName.VIRIDIS : "Viridis ☘️",

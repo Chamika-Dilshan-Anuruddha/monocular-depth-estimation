@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-_FMT = "%(asctime)s | %(levelname)-8s | %(name)s:%(line)d - %(message)s"
+_FMT = "%(asctime)s | %(levelname)-8s | %(name)s:%(lineno)d - %(message)s"
 _DATE_FMT = "%Y-%m-%d %H:%M:%S"
 
 def get_logger(name: str, level: Optional[str] = None,  log_file: Optional[str | Path] = None) -> logging.Logger:
